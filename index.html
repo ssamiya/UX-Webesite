@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>The Modest Wardrobe</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+           background-color: white;
+           color: #433225;
+       }
+
+       header {
+           background: url("plant+wardrobe.png") no-repeat center center;
+           background-size: cover;
+           color: #fff;
+           padding: 1px;
+           text-align: center;
+           position: sticky; /* Change to 'fixed' if you want it to always stay at the top */
+           top: 0; /* Ensures it sticks to the top */
+           z-index: 1000; /* Stays above other elements */
+           height: 150px; /* Set a specific height */
+           overflow: hidden; /* Ensures no content overflows */
+       }
+
+       header h1 {
+           font-family: 'Playfair Display', serif; /* Change font family for elegance */
+           font-size: 2.5em; /* Adjust size for visibility */
+           font-weight: 700; /* Make it bold */
+           margin: 30px 0;
+           color: white; /* Match the website palette */
+       }
+
+       header p {
+           font-size: 1.4em; /* Make it slightly larger */
+           color: white; /* Match your design's color theme */
+           text-align: center; /* Center-align the text */
+           margin-top: 1px; /* Add spacing above */
+           margin-bottom: 15px; /* Add spacing below */
+           line-height: 1.5; /* Improve readability */
+       }
+
+
+       nav {
+           background-color: #F0E2CE ;
+           display: flex;
+           justify-content: center;
+           padding: 10px 0;
+           position: relative;
+           position: sticky;
+           top: 150px; /* Adjust based on the header's height */
+           z-index: 999;
+
+
+       }
+
+       nav ul {
+           list-style-type: none;
+           margin: 0;
+           padding: 0;
+           display: flex;
+       }
+
+       nav ul li {
+           position: relative;
+           margin: 0 15px;
+       }
+
+       nav ul li a {
+           color: #433225;
+           text-decoration: none;
+           font-size: 1em;
+           padding: 5px 10px;
+           transition: color 0.3s;
+       }
+
+       nav ul li a:hover {
+           color: #644A37;
+       }
+
+       nav ul li ul {
+           display: none;
+           position: absolute;
+           background-color: white;
+           margin-top: 5px;
+           list-style-type: none;
+           padding: 10px 0;
+           border-radius: 5px;
+           min-width: 150px;
+           z-index: 20;
+       }
+
+       nav ul li:hover ul {
+           display: block;
+       }
+
+       nav ul li ul li {
+           margin: 0;
+       }
+
+       nav ul li ul li a {
+           padding: 10px 15px;
+           display: block;
+           color: #433225;
+           transition: background-color 0.3s, color 0.3s;
+       }
+
+       nav ul li ul li a:hover {
+           background-color: #f0e2ce;
+           color: #433225;
+       }
+
+       .gallery {
+           display: flex;
+           flex-wrap: wrap;
+           gap: 20px;
+           padding: 20px;
+           justify-content: center;
+       }
+
+       .item {
+           position: relative;
+           background-color: #CAB09D;
+           border: 1px solid #A67B5B;
+           border-radius: 8px;
+           overflow: hidden;
+           max-width: 300px;
+           text-align: center;
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+           transition: transform 0.3s;
+           z-index: 1;
+       }
+
+       .item:hover {
+           transform: scale(1.05);
+       }
+
+       .item img {
+           width: 100%;
+           height: auto;
+       }
+
+       .item .info {
+           padding: 40px;
+       }
+
+       .item .info h3 {
+           margin: 10px 0;
+           font-size: 1.2em;
+       }
+
+       .item .info a {
+           text-decoration: none;
+           color: #433225;
+           font-weight: bold;
+           margin-right: 10px;
+       }
+
+       .item .info a:hover {
+           color: #F0E2CE;
+       }
+
+       .outfit-description {
+           display: none;
+           position: absolute;
+           top: 0;
+           left: 0;
+           background-color: rgba(0, 0, 0, 0.6);
+           color: white;
+           width: 100%;
+           height: 100%;
+           padding: 10px;
+           text-align: center;
+           box-sizing: border-box;
+           overflow-y: auto;
+       }
+
+       .item:hover .outfit-description {
+           display: block;
+       }
+
+       .outfit-description a {
+           color: #f3ab6c;
+           text-decoration: none;
+           display: block;
+           margin: 10px 0;
+       }
+
+       .outfit-description a:hover {
+           text-decoration: underline;
+       }
+
+       footer {
+           background-color: #F0E2CE;
+           color: #fff;
+           text-align: center;
+           padding: 5px;
+           position: relative;
+           bottom: 0;
+           width: 100%;
+       }
+
+       .video-container {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           justify-content: center;
+           text-align: center;
+           padding: 5px;
+           max-width:453px;
+           background-color: #F0E2CE;
+           border-radius: 5px;
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+           margin-top: 10px;
+       }
+
+       .video-container video {
+           width: 50%;
+           max-width: 1000px;
+           border-radius: 10px;
+       }
+
+       .video-container p {
+           margin-top: 10px;
+           font-size: 1.2em;
+           color: #433225;
+           font-weight: bold;
+       }
+
+       .intro {
+           text-align: center;
+           padding: 20px;
+           background-color: #F0E2CE;
+           border-radius: 10px;
+           margin-bottom: 20px;
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       }
+
+       .intro h1 {
+           font-size: 2em;
+           color: #433225;
+           margin-bottom: 10px;
+       }
+
+       .intro p {
+           font-size: 1.1em;
+           color: #644A37;
+           margin-bottom: 15px;
+           line-height: 1.6;
+       }
+
+
+
+       
+   </style>
+</head>
+<body>
+   <header>
+       <h1>The Modest Wardrobe</h1>
+       <p>Find the beauty in modesty</p>
+   </header>
+   
+  
+   
+
+   <nav>
+       <ul>
+           <li><a href="#" onclick="showGallery('home')">Home</a></li>
+           <li>
+               <a href="#" onclick="showGallery('western')">Western</a>
+               <ul>
+                   <li><a href="#" onclick="showGallery('casual')">Casual</a></li>
+                   <li><a href="#" onclick="showGallery('formal')">Formal</a></li>
+               </ul>
+           </li>
+           <li><a href="#" onclick="showGallery('abayas')">Abayas</a></li>
+           <li><a href="#" onclick="showGallery('men')">Men</a></li>
+       </ul>
+   </nav>
+
+   <div class="gallery" id="gallery">
+       <!-- Default gallery content -->
+       <div class="item" onclick="showGallery('casual')">
+           <img src="image11.jpeg" alt="Fashion Item 1">
+           <div class="outfit-description">
+               <p>CLICK TO VIEW OUR CASUAL SELECTION</p>
+           </div>
+       </div>
+       <div class="item" onclick="showGallery('men')">
+           <img src="Mimage6.jpeg" alt="Men's Fashion">
+           <div class="outfit-description">
+               <p>CLICK TO VIEW OUR MENS SELECTION</p>
+           </div>
+       </div>
+       <div class="item" onclick="showGallery('formal')">
+           <img src="image5.jpeg" alt="Formal outfit">
+           <div class="outfit-description">
+               <p>CLICK TO VIEW OUR FORMAL SELECTION</p>
+           </div>
+       </div>
+       <div class="item" onclick="showGallery('abayas')">
+           <img src="Aimage10.jpeg" alt="Abaya">
+           <div class="outfit-description">
+               <p>CLICK TO VIEW OUR ABAYA SELECTION</p>
+       </div>
+   </div>
+   </div>
+   </div>
+
+   <footer>
+       <p>&copy; 2025 Fashion Finds. All rights reserved.</p>
+   </footer>
+
+   <script>
+       const galleries = {
+           home: [
+               { src: "jilzvid.jpeg.mov", description: "Fall in love with the desi culture", link: "#" },
+               { src: "jilzvid2.mov", description: "Discover our Western collection",link:"#" },
+               { src: "jilzvid3.mov", description: "Explore elegant Abayas",link: "#" },
+               { src: "menvid.mov", description: "Find inspiration for Mens clothing",link: "#" }
+
+           ],
+           western: [
+
+           ],
+           casual: [
+               {
+                   src: "image0.jpeg",
+                   title: "Cream jumper with brown trousers, coat, shoes, and bag. Pearl earrings and brown sunglasses complete the look.",
+                   links: [
+                       { href: "https://www.asos.com/pimkie/pimkie-crew-neck-jumper-in-cream/prd/207124487?currencyid=1&browsecountry=GB", text: "Buy the jumper" },
+                       { href: "https://shop.mango.com/gb/en/p/women/trousers/smart-trousers/wideleg-pleated-trousers_77038285?c=30&talla=40", text: "Buy the trousers" },
+                       { href: "https://www.glamifyfashion.com/products/tara-chocolate-wool-like-tailored-coat", text: "Buy the coat" },
+                       { href: "https://www.newbalance.co.uk/pd/530/MR530ASM-D-08.html", text: "Buy the shoes" },
+                       { href: "https://bondandmason.com/products/the-deborah-handbag", text: "Buy the bag" }
+                   ]
+               },
+               {
+                   src: "image1.jpeg",
+                   title: "Black jumper, grey trousers and coat, black boots and bag, gold earrings and black sunglasses.",
+                   links: [
+                       { href: "https://www.asos.com/prd/206464991?acquisitionsource=pasteboard", text: "Buy the jumper" },
+                       { href: "https://www.shopcider.com/product/detail?pid=1031917", text: "Buy the trousers" },
+                       { href: "https://valentimode.com/products/valenti-chic-oversized-tailored-soft-coat-buttoned", text: "Buy the coat" },
+                       { href: "https://www.zara.com/uk/en/stiletto-shoes-p13238410.html", text: "Buy the heels" },
+                       { href: "https://www.google.com/aclk", text: "Buy the bag" }
+                   ]
+               },
+               {
+                   src: "image2.jpeg",
+                   title: "Beige jumper, black trousers, white trainers, brown bag, glasses and watch.",
+                   links: [
+                       { href: "https://eclat-emporium.com/products/abigale?variant=53620766376204&currency=GBP&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&tw_source=google&tw_adid=&tw_campaign=21412846771&gad_source=1", text: "Buy the jumper" },
+                       { href: "https://www.shopcider.com/product/detail?pid=101094741&style_id=1160057&sku_id=1281488", text: "Buy the trousers" },
+                       { href: "https://www.jdsports.co.uk/product/white-adidas-originals-samba-og-womens/16042449/", text: "Buy the trainers" },
+                       { href: "https://bondandmason.com/products/the-scarlett-handbag-2?currency=GBP", text: "Buy the bag" }
+                   ]
+               },
+               {
+                   src: "image3.jpeg",
+                   title: "Brown jumper, trousers, coat, boots and bag, gold sunglasses and earrings.",
+                   links: [
+                       { href: "https://hiccup.com/products/oversized-high-neck-sweatshirt-mocha-brown-LYIV43P801?gad_source=1", text: "Buy the jumper" },
+                       { href: "https://www.shopcider.com/product/detail?pid=1023658&style_id=1158438&sku_id=1273680&currency=GBP&local=en&country=GB&utm_source=google_shopping&utm_campaign=pla-gb-cate-pants-all&link_id=5805f019db2a49529c9f3e490de533a6&gad_source=1", text: "Buy the trousers" },
+                       { href: "https://www.carvela.com/women/shoes/boots/ankle-boots/willow-ankle-dark-brown-synthetic-carvela-1428631979?istCompanyId=5d29e1c9-8e90-448b-aba7-d122dc5e5729&istFeedId=a4790684-ecc7-4b34-b796-4fa085d68cfc&istItemId=qtmqxriwq&istBid=t&gad_source=1", text: "Buy the boots" },
+                       { href: "https://www.asos.com/monki/monki-tailored-double-breasted-longline-coat-in-brown/prd/207067437#colourWayId-207067447", text: "Buy the coat" },
+                       { href: "https://www.amazon.co.uk/Leather-Backpack-Daypacks-Backpacks-Schoolbag/dp/B09B78XJPB?mcid=cd939197976d39cfb307e7e02b6b0b6b&th=1&psc=1&tag=googshopuk-21&linkCode=df0&hvadid=697278487387&hvpos=&hvnetw=g&hvrand=17224140395825704082&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9222618&hvtargid=pla-1418412226545&psc=1&gad_source=1", text: "Buy the bag" }
+                   ]
+               },
+               {
+                   src: "image4.jpeg",
+                   title: "Black jumper, cream trousers, white trainers, black bag and watch.",
+                   links: [
+                       { href: "https://www.shopcider.com/product/detail?pid=102794125&style_id=1159085&sku_id=1276915&currency=GBP&local=en&country=GB&utm_source=google_shopping&utm_campaign=pla-prod-fallsweater1-240820-gb-a02-maxclick-c01-d01&link_id=8ee389b88409410684e820401d3fd721&gad_source=1", text: "Buy the jumper" },
+                       { href: "https://www.shein.co.uk/goods-p-45089843.html?goods_id=45089843&test=5051&url_from=shein_google_ukadplaEN_price_20240619&scene=1&pf=google&ad_type=DPA&language=en&siteuid=uk&landing_page_id=1510&ad_test_id=1195&ad_check=2&requestId=olw-48twkeramj2k&gad_source=1&skucode=I92i33laahk2&onelink=0/google_feed_uk&setid=158273963409&currency=GBP&lang=en&cid=20765008465", text: "Buy the trousers" },
+                       { href: "https://www.nike.com/gb/t/air-force-1-07-shoes-SgHWBZ/CW2288-111", text: "Buy the trainers" },
+                       { href: "https://www.amazon.co.uk/Barabum-Classic-Shoulder-HandBag-Closure/dp/B08SLB654V?mcid=5d39ff5c241933a28f065cc1369b159d&tag=googshopuk-21&linkCode=df0&hvadid=697274196671&hvpos=&hvnetw=g&hvrand=4717491062984049162&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9222618&hvtargid=pla-1521627815917&psc=1&gad_source=1", text: "Buy the bag" }
+                   ]
+               }
+
+           ],
+           
+           formal: [
+               {
+                   src: "image5.jpeg",
+                   title: "Brown blouse with trousers, beige coat, brown heels, and bag. Gold jewelry completes the elegant look.",
+                   links: [
+                       { href: "https://www.zara.com/uk/en/soft-plain-knit-sweater-p02142168.html?v1=395785913&utm_source=google&utm_medium=cpc&gad_source=1", text: "Buy the jumper" },
+                       { href: "https://www.amazon.co.uk/Trendyol-Womens-Spacious-Trousers-Shorts/dp/B09RGCCHW6?mcid=67842ec08b703144926db4f14a867da1&th=1&psc=1&tag=googshopuk-21&linkCode=df0&hvadid=696556253660&hvpos=&hvnetw=g&hvrand=1734807063297589671&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9222618&hvtargid=pla-1732273495814&psc=1&gad_source=1", text: "Buy the trousers" },
+                       { href: "https://www.zara.com/uk/en/oversized-coat-with-wool-p03046345.html?v1=419352401&v2=2419009", text: "Buy the coat" },
+                       { href: "https://stevemadden.co.uk/products/evelyn-e-pump-cappuccino-leather?variant=47524814881113&currency=GBP&utm_source=google&utm_medium=cpc&utm_campaign=shopping&gad_source=1", text: "Buy the heels" },
+                       { href: "https://www.amazon.co.uk/Aucuu-Shoulder-Crocodile-Underarm-Handbags/dp/B09KC73P7W?mcid=bb8235dd9c073fa8b9b3f0d4401883c2&tag=googshopuk-21&linkCode=df0&hvadid=697274196671&hvpos=&hvnetw=g&hvrand=799811181387707408&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9222618&hvtargid=pla-1608907463981&psc=1&gad_source=1", text: "Buy the bag" }
+                   ]
+               },
+               {
+                   src: "image10.jpeg",
+                   title: "Black maxi dress, tan shawl, black heels and bag, black and gold jewellery.",
+                   links: [
+                       { href: "https://www.zara.com/uk/en/soft-midi-dress-p01058467.html?v1=398092408&utm_source=google&utm_medium=cpc&gad_source=1", text: "Buy the dress" },
+                       { href: "https://www.amazon.co.uk/dp/B08N5CDJF1?_encoding=UTF8&ref_=cm_sw_r_cp_ud_dp_F682215JXWS4YMY474AX&th=1", text: "Buy the shawl" },
+                       { href: "https://www.google.com/shopping/product/16933785934060067060?safe=active&client=safari&sca_esv=884896eda14e76c3&hl=en-gb&q=black+and+camel+heels", text: "Buy the heels" },
+                       { href: "https://www.charleskeith.co.uk/gb/CK2-30782210_BLACK.html", text: "Buy the bag" }
+                   ]
+               },
+               {
+                   src: "image11.jpeg",
+                   title: "White turtleneck and trousers, beige waterfall jacket, beige loafers and bag.",
+                   links: [
+                       { href: "https://hiccup.com/products/slim-fit-turtleneck-sweater-dusty-white-LZ8AG1HJ01?gad_source=4", text: "Buy the top" },
+                       { href: "https://www.zara.com/uk/en/flowing-trousers-with-pleats-p01255410.html?v1=384539246&utm_source=google&utm_medium=cpc&gad_source=4", text: "Buy the trousers" },
+                       { href: "https://www.zara.com/uk/en/asymmetric-knit-cape-p03739235.html?v1=379127975", text: "Buy the shawl" },
+                       { href: "https://www.next.co.uk/style/st739082/n42082#n42082", text: "Buy the shoes" },
+                       { href: "https://www.stevemadden.com/collections/all-handbags/products/dt618175-pewter-metallic", text: "Buy the bag" }
+                   ]
+               },
+               {
+                   src: "image12.jpeg",
+                   title: "Cream wrap blouse, beige skirt and bag, nude heels, brown scarf, gold jewellery.",
+                   links: [
+                       { href: "https://www.shein.co.uk/goods-p-38303695.html?goods_id=38303695&test=5051&url_from=shein_google_ukadplaEN_price_20240619&scene=1", text: "Buy the shirt" },
+                       { href: "https://www.boohoo.com/satin-slip-maxi-skirt-/HZZ04355-712-14.html?gad_source=1", text: "Buy the skirt" },
+                       { href: "https://www.charleskeith.co.uk/gb/CK1-60280377_BEIGE.html?utm_source=google&utm_medium=pmax-pm&utm_campaign=always-on-prospecting-all-products&utm_content=uk-pm-always-on-advantage-plus-carousel-ad-all-products&gad_source=1", text: "Buy the heels" },
+                       { href: "https://www.next.co.uk/style/su297646/b40182#b40182", text: "Buy the bag" }
+                   ]
+               },
+               {
+                   src: "image13.jpeg",
+                   title: "Cream jumper dress, brown coat, brown heeled boots, brown and beige bag, brown sunglasses, gold jewellery.",
+                   links: [
+                       { href: "https://modesens.com/product/brandon-maxwell-women-cable-knit-wool-midi-dress-white-38488382/", text: "Buy the dress" },
+                       { href: "https://www.shopcider.com/product/detail?pid=114021788&style_id=2069179&sku_id=10321699&currency=GBP", text: "Buy the coat" },
+                       { href: "https://www.next.co.uk/style/su059004/ad4972#ad4972", text: "Buy the boots" },
+                       { href: "https://www.stevemadden.com/collections/all-handbags/products/bevelymm-cream", text: "Buy the bag" }
+                   ]
+               }
+           ],
+           
+           abayas: [
+               {
+                   src: "Aimage6.jpeg",
+                   title: "A black abaya styled with black heels and a grey headscarf.",
+                   links: [
+                       { href: "https://www.zadinaabayas.com/product/black-essential-abaya", text: "Buy the abaya" }
+                   ]
+               },
+               {
+                   src: "Aimage7.jpeg",
+                   title: "Grey abaya with black heels and a black headscarf.",
+                   links: [
+                       { href: "https://www.zadinaabayas.com/product/grey-essential-abaya", text: "Buy the abaya" }
+                   ]
+               },
+               {
+                   src: "Aimage8.jpeg",
+                   title: "Mocha abaya with brown heels and headscarf.",
+                   links: [
+                       { href: "https://www.zadinaabayas.com/product/mocha-essential-abaya", text: "Buy the abaya" }
+                   ]
+               },
+               {
+                   src: "Aimage9.jpeg",
+                   title: "Grey abaya with diamantes, styled with sandals and a matching headscarf.",
+                   links: [
+                       { href: "https://www.zadinaabayas.com/product/grey-badia-chiffon-abaya", text: "Buy the abaya" }
+                   ]
+               },
+               {
+                   src: "Aimage10.jpeg",
+                   title: "Emerald green abaya with bead work on sleeves.",
+                   links: [
+                       { href: "https://www.zadinaabayas.com/product/green-hidcote-kimono", text: "Buy the abaya" }
+                   ]
+               }
+           ],
+
+           men: [
+
+               {
+                   src: "Mimage2.jpeg",
+                   title: "Green sweatshirt, white t-shirt, black trousers, trainers, cap and watch.",
+                   links: [
+                       { href: "https://www.lacoste.com/gb/lacoste/men/clothing/sweatshirts/SH9608-00.html?color=132&size=6&wiz_source=google&wiz_medium=cpc&wiz_campaign=18264922210&wiz_term=&wiz_content=&gad_source=1", text: "Buy the sweatshirt" },
+                       { href: "https://vuoriclothing.co.uk/products/tuvalu-tee-white?variant=31858311561319&glCountry=GB&glCurrency=GBP&=&suppressWelcomePopup=true&utm_source=google&utm_medium=cpc&utm_term=&utm_campaign=G-PerformanceMax-GBR-EN-HighPriority-BothGenders&utm_content=&gad_source=1", text: "Buy the t-shirt" },
+                       { href: "https://www.zara.com/uk/en/comfort-suit-trousers-p01564301.html?v1=370687330&utm_source=google&utm_medium=cpc&gad_source=1", text: "Buy the trousers" },
+                       { href: "https://www.footlocker.co.uk/en/product/~/314311848304.html", text: "Buy the trainers" },
+                       { href: "https://hatstore.co.uk/new-york-yankees-9forty-98-dark-green-black-pink-a-frame-adjustable-new-era", text: "Buy the cap" }
+                   ]
+               },
+               {
+                   src: "Mimage3.jpeg",
+                   title: "Washed grey hoodie, light grey jeans, grey trainers, styled with a watch.",
+                   links: [
+                       { href: "https://www.nycjackets.com/product/for-the-culture-grey-hoodie/?gad_source=1", text: "Buy the hoodie" },
+                       { href: "https://www.mrmarvis.com/gb/products/miles-the-jeans?nbt=nb%3Aadwords%3Ax%3A20590463934%3A%3A&nb_adtype=pla&nb_kwd=&nb_ti=&nb_mi=112202755&nb_pc=online&nb_pi=8486183043402&nb_ppi=&nb_placement=&nb_li_ms=&nb_lp_ms=&nb_fii=&nb_ap=&nb_mt=&bg_source=ga&bg_campaign=20590463934&bg_kw=-mi-112202755-pi-8486183043402-ppi-&bg_source_id=&gad_source=1", text: "Buy the jeans" },
+                       { href: "https://www.schuh.co.uk/mens/new-balance-2002r-grey-trainers/3459137550/?utm_source=google&utm_medium=surfaces-across-google&utm_campaign=organic-shopping&gad_source=1", text: "Buy the trainers" }
+                   ]
+               },
+               {
+                   src: "Mimage4.jpeg",
+                   title: "Black sweatshirt, beige jacket, black trousers, trainers and cap.",
+                   links: [
+                       { href: "https://www.zara.com/uk/en/purl-knit-sweater-p03284330.html?v1=364092023&utm_source=google&utm_medium=cpc&gad_source=1", text: "Buy the sweatshirt" },
+                       { href: "https://www.gant.co.uk/padded-hampshire-jacket-dried-khaki/7325707637681.html?utm_source=google&utm_medium=cpc&utm_campaign=north-gant%20uk-google%20ads-low-shopping-generic-men&utm_content=7325707637681&utm_term={shopping_product_id}&device=c&network=g&utm_product_channel=online&utm_merchant_id=250319771&gad_source=1", text: "Buy the jacket" },
+                       { href: "https://www.zara.com/uk/en/comfort-suit-trousers-p01564301.html?v1=370687330&utm_source=google&utm_medium=cpc&gad_source=1", text: "Buy the trousers" },
+                       { href: "https://www.nike.com/gb/t/air-jordan-1-low-easyon-shoes-fPCNt2/DM1206-100", text: "Buy the trainers" },
+                       { href: "https://www.asos.com/polo-ralph-lauren/polo-ralph-lauren-logo-baseball-cap-in-beige/prd/4851099?msockid=30a618fb45256b7602b20a90445c6a04", text: "Buy the cap" }
+                   ]
+               },
+               {
+                   src: "Mimage8.jpeg",
+                   title: "White half-zip sweater, black trousers, white trainers.",
+                   links: [
+                       { href: "https://www.zara.com/uk/en/quarter-zip-sweatshirt-p06462333.html", text: "Buy the sweater" },
+                       { href: "https://www.zara.com/uk/en/comfort-suit-trousers-p01564301.html", text: "Buy the trousers" },
+                       { href: "https://www.gant.co.uk/mcjulien-leather-sneakers-white", text: "Buy the trainers" }
+                   ]
+               }
+           ]
+
+
+}
+
+
+
+       ;
+       function showGallery(category) {
+   const galleryElement = document.getElementById('gallery');
+   galleryElement.innerHTML = ''; // Clear current content
+
+   if (category === 'home') {
+       // Add introduction and videos for Home section
+       const intro = `
+           <div class="intro">
+               <h1>Welcome to The Modest Wardrobe!</h1>
+               <p>Where modest fashion meets modern style!</p>
+               <p>Discover your one-stop destination for fashion inspiration, expert styling tips, and the perfect pieces to complete your wardrobe! Our goal is to empower you to express your style with confidence and grace, without compromising on comfort or elegance.</p>
+               <p>At The Modest Wardrobe, we curate stylish, modest outfits and provide direct links to help you shop your favourites effortlessly. Whether you’re new to modest fashion or a long-time enthusiast, we’re here to show you how to embrace style with simplicity and ease.</p>
+               <p><strong>Join us and find the beauty in modesty today!</strong></p>
+           </div>
+       `;
+
+       // Render introduction
+       galleryElement.innerHTML += intro;
+
+       // Add videos
+       galleries[category].forEach(video => {
+           const videoElement = `
+               <div class="video-container">
+                   <video controls autoplay muted loop>
+                       <source src="${video.src}" type="video/mp4">
+                       Your browser does not support the video tag.
+                   </video>
+                   <p>${video.description}</p>
+               </div>
+           `;
+           galleryElement.innerHTML += videoElement;
+       });
+   } else {
+       // Render gallery items for other sections
+       galleries[category].forEach(item => {
+           const galleryItem = document.createElement('div');
+           galleryItem.className = 'item';
+
+           galleryItem.innerHTML = `
+               <img src="${item.src}" alt="${item.title}">
+               <div class="outfit-description">
+                   <p>${item.title}</p>
+                   ${item.links
+                       ? item.links
+                             .map(
+                                 (link) =>
+                                     `<a href="${link.href}" target="_blank">${link.text}</a>`
+                             )
+                             .join('')
+                       : ''}
+               </div>
+           `;
+
+           if (item.targetCategory) {
+               galleryItem.addEventListener('click', () => showGallery(item.targetCategory));
+           }
+
+           galleryElement.appendChild(galleryItem);
+       });
+   }
+}
+
+
+
+   </script>
+</body>
+</html>
